@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #1e272e; /* Color oscuro profundo */
+    font-family: 'Crimson Text', serif; /* Una fuente más bíblica */
+    perspective: 1500px;
+}
+
+/* Importar fuente */
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,700;1,400&display=swap');
+
+.book-container {
+    width: 380px;
+    height: 500px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.book {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(-20deg); /* Ángulo inicial más suave */
+}
+
+.page {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform-style: preserve-3d;
+    transform-origin: left center;
+    box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 1.2s ease-in-out;
+}
+
+.front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    background-color: #f5eeda; /* Color papel antiguo */
+    background-size: cover;
+    background-position: center;
+    border: 1px solid #c4a77d; /* Borde pergamino */
+}
+
+.back {
+    transform: rotateY(180deg);
+}
+
+/* Superposición de texto sobre imagen */
+.text-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+}
+
+.text-page::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* Capa oscura para contraste */
+}
+
+.content {
+    background-color: rgba(253, 251, 241, 0.9); /* Efecto pergamino traslúcido */
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid #8e6e46;
+    text-align: center;
+    position: relative; /* Para estar sobre el overlay */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.content p {
+    margin: 0;
+    color: #4a3721;
+    line-height: 1.6;
+    font-size: 1.15rem;
+    font-style: italic;
+}
+
+/* Estilos de Portada */
+.cover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('sources/cover.png');
+}
+
+.title-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.title-overlay h1 {
+    color: #f1c40f; /* Dorado */
+    font-size: 2.8rem;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.title-overlay h2 {
+    color: white;
+    font-size: 1.4rem;
+    margin: 10px 0 0 0;
+    font-weight: normal;
+}
+
+.blank-page { background-color: #dcdde1; } /* Página en blanco tras portada */
+
+/* Asignación de Imágenes de Escenas */
+.escena-1  { background-image: url('sources/escena_1.png'); }
+.escena-2  { background-image: url('sources/escena_2.png'); }
+.escena-3  { background-image: url('sources/escena_3.png'); }
+.escena-4  { background-image: url('sources/escena_4.png'); }
+.escena-5  { background-image: url('sources/escena_5.png'); }
+.escena-6  { background-image: url('sources/escena_6.png'); }
+.escena-7  { background-image: url('sources/escena_7.png'); }
+.escena-8  { background-image: url('sources/escena_8.png'); }
+.escena-9  { background-image: url('sources/escena_9.png'); }
+.escena-10 { background-image: url('sources/escena_10.png'); }
+.escena-11 { background-image: url('sources/escena_11.png'); }
+.escena-12 { background-image: url('sources/escena_12.png'); }
+
+/* Animaciones y profundidades Z (Orden correctedo y tiempos ajustados) */
+.book .page:nth-child(1) { --initial-z: 13; z-index: 13; animation: pageTurn 1.2s ease-in-out 6s forwards; }
+.book .page:nth-child(2) { --initial-z: 12; z-index: 12; animation: pageTurn 1.2s ease-in-out 18s forwards; }
+.book .page:nth-child(3) { --initial-z: 11; z-index: 11; animation: pageTurn 1.2s ease-in-out 30s forwards; }
+.book .page:nth-child(4) { --initial-z: 10; z-index: 10; animation: pageTurn 1.2s ease-in-out 42s forwards; }
+.book .page:nth-child(5) { --initial-z: 9;  z-index: 9;  animation: pageTurn 1.2s ease-in-out 54s forwards; }
+.book .page:nth-child(6) { --initial-z: 8;  z-index: 8;  animation: pageTurn 1.2s ease-in-out 66s forwards; }
+.book .page:nth-child(7) { --initial-z: 7;  z-index: 7;  animation: pageTurn 1.2s ease-in-out 78s forwards; }
+.book .page:nth-child(8) { --initial-z: 6;  z-index: 6;  animation: pageTurn 1.2s ease-in-out 90s forwards; }
+.book .page:nth-child(9) { --initial-z: 5;  z-index: 5;  animation: pageTurn 1.2s ease-in-out 102s forwards; }
+.book .page:nth-child(10) { --initial-z: 4; z-index: 4;  animation: pageTurn 1.2s ease-in-out 114s forwards; }
+.book .page:nth-child(11) { --initial-z: 3; z-index: 3;  animation: pageTurn 1.2s ease-in-out 126s forwards; }
+.book .page:nth-child(12) { --initial-z: 2; z-index: 2;  animation: pageTurn 1.2s ease-in-out 138s forwards; }
+
+@keyframes pageTurn {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(-180deg); z-index: calc(-1 * var(--initial-z)); }
+}
+
+/* Estilos específicos para la contraportada especial */
+.contraportada-especial {
+    background-color: #1a1a1a; /* Un negro casi puro para máximo contraste con el oro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+    border: 1px solid #c4a77d; /* Mantenemos el borde fino de pergamino si quieres, o puedes quitarlo */
+}
+
+/* Contenedor del texto de dedicatoria (sin cuadro blanco) */
+.dedicatoria-content {
+    background: none; /* Eliminamos cualquier fondo */
+    border: none;       /* Eliminamos bordes */
+    box-shadow: none;   /* Eliminamos sombras del contenedor */
+    text-align: center;
+}
+
+/* El efecto de Oro Refulgente */
+.dedicatoria-content p {
+    margin: 0 0 20px 0; /* Espaciado entre párrafos */
+    line-height: 1.8;
+    font-size: 1.3rem; /* Ligeramente más grande para que luzca el efecto */
+    font-style: italic;
+    font-weight: bold; /* El texto en negrita ayuda a que el degradado se note más */
+
+    /* Base de color dorado */
+    color: #f1c40f; 
+
+    /* EFECTO DE ORO REFULGENTE MEDIANTE DEGRADADO Y MÁSCARA */
+    background-image: linear-gradient(
+        to bottom,
+        #fbf5b7 0%,   /* Oro muy claro (brillo) */
+        #f1c40f 25%,  /* Oro base */
+        #b58900 50%,  /* Oro sombra */
+        #f1c40f 75%,  /* Oro base */
+        #fbf5b7 100%  /* Oro muy claro (brillo) */
+    );
+    background-size: 100% auto;
+    background-clip: text;
+    -webkit-background-clip: text; /* Necesario para Chrome/Safari */
+    
+    /* Fallback para navegadores que no soportan background-clip: text */
+    -webkit-text-fill-color: transparent; 
+
+    /* SOMBRA PARA DAR RELIEVE Y REFULGENCIA (BRILLO EXTRÍNSICO) */
+    text-shadow: 
+        0px 1px 0px rgba(255,255,255,0.3), /* Relieve superior ligero */
+        0px -1px 0px rgba(0,0,0,0.7),      /* Profundidad inferior */
+        0px 0px 10px rgba(241, 196, 15, 0.5), /* Resplandor dorado suave */
+        0px 0px 20px rgba(251, 245, 183, 0.3); /* Resplandor dorado fuerte (refulgente) */
+}
